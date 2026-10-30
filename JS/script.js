@@ -16,13 +16,13 @@ async function getOPimageByUrl(OPUrl) {
 }
 window.onload = async () => {
     const OPCharactersResponse = await getallOPCHARACTERS();
-    const OPCharacters = OPCharactersResponse.results;
+    //const OPCharacters = OPCharactersResponse.results;
     const mainElement = document.createElement('main');
     document.body.appendChild(mainElement);
    
 
-    for (const OPreference of OPCharacters) {
-        const OPimage = await getOPimageByUrl(OPreference.image_url);
+  //  for (const OPreference of OPCharacters.keys(image_url)) {
+       // const OPimage = await getOPimageByUrl(OPreference.image_url);
         
 
         const OPelement = document.createElement('div');
@@ -36,7 +36,7 @@ window.onload = async () => {
         
 
          const OPsprite = document.createElement('img');
-          OPsprite.src = OPimage;
+         OPsprite.src = OPCharactersResponse.image_url;
         // //Pokemonsprite.alt = pokemon.name;
         // const OPBounty = document.createElement('p');
         // OPBounty.textContent='OPCharacters.bounty'
@@ -67,4 +67,4 @@ window.onload = async () => {
         mainElement.appendChild(OPelement);
        
     }
-}
+//}
