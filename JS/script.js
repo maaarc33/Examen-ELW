@@ -1,17 +1,28 @@
 const OP_API_BASEURL = 'http://localhost:3000/api/onepiece';
 async function getallOPCHARACTERS() {
-    const response = await fetch(`${OP_API_BASEURL}/characters?limit=10`);
+    const response = await fetch(`${OP_API_BASEURL}/characters`);
     const data = await response.json();
     return data;
 }   
+async function getOPimageByUrl(OPUrl) {
+    const response = await fetch(OPUrl);
+
+    if (!response.ok) {
+        throw new Error('Image not found');
+    }
+
+    const data = await response.json();
+    return data;
+}
 window.onload = async () => {
     const OPCharactersResponse = await getallOPCHARACTERS();
     const OPCharacters = OPCharactersResponse.results;
     const mainElement = document.createElement('main');
     document.body.appendChild(mainElement);
-    const OPcounter=0;
+   
 
-     while (OPcounter<10) {
+     while (true) {
+       // const OPimage = await getOPimageByUrl(OPCharacters.image_url);
         
 
         const OPelement = document.createElement('div');
@@ -21,33 +32,36 @@ window.onload = async () => {
 
         
 
-        const OPsprite = document.createElement('img');
-        OPsprite.src = OPCharacters.image_url;
-        Pokemonsprite.alt = pokemon.name;
-        const OPBounty = document.createElement('p');
-        OPBounty.textContent='OPCharacters.bounty'
-        OPBounty
+        // const OPsprite = document.createElement('img');
+        // OPsprite.src = OPimage;
+        // //Pokemonsprite.alt = pokemon.name;
+        // const OPBounty = document.createElement('p');
+        // OPBounty.textContent='OPCharacters.bounty'
+        // OPBounty.hidden=true;
+        // if(OPBounty != null){
+        //     OPBounty.hidden=false;
+        // }
 
-        const AddOPButton = document.createElement('button');
-        AddPokemonButton.textContent = 'ADD POKEMON TO THE TEAM';
-        AddPokemonButton.hidden = true;
+        // const AddOPButton = document.createElement('button');
+        // AddPokemonButton.textContent = 'ADD POKEMON TO THE TEAM';
+        // AddPokemonButton.hidden = true;
 
-        AddPokemonButton.addEventListener('click', () => {
-            addPokemon(pokemon);
-        });
+        // AddPokemonButton.addEventListener('click', () => {
+        //     addPokemon(pokemon);
+        // });
 
-        PokemonName.addEventListener('click', () => {
-            Pokemontype.hidden = !Pokemontype.hidden;
-            Pokemonsprite.hidden = !Pokemonsprite.hidden;
-            AddPokemonButton.hidden = !AddPokemonButton.hidden;
-        });
+        // PokemonName.addEventListener('click', () => {
+        //     Pokemontype.hidden = !Pokemontype.hidden;
+        //     Pokemonsprite.hidden = !Pokemonsprite.hidden;
+        //     AddPokemonButton.hidden = !AddPokemonButton.hidden;
+        // });
 
-        Pokemonelement.appendChild(PokemonName);
-        Pokemonelement.appendChild(Pokemonsprite);
-        Pokemonelement.appendChild(Pokemontype);
-        Pokemonelement.appendChild(AddPokemonButton);
+        OPelement.appendChild(CharacterName);
+        OPelement.appendChild(OPsprite);
+        OPelement.appendChild(OPBounty);
+        //OPelement.appendChild(AddPokemonButton);
 
         mainElement.appendChild(Pokemonelement);
-        OPcounter++;
+       
     }
 }
