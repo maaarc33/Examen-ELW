@@ -1,20 +1,55 @@
-const OP_API_BASEURL = 'https://onepieceapi.com/api';
+const OP_API_BASEURL = 'https://bn9ct5dd-3000.uks1.devtunnels.ms/';
 async function getallOPCHARACTERS() {
     const response = await fetch(`${OP_API_BASEURL}/characters?limit=10`);
     const data = await response.json();
     return data;
-}
+}   
 window.onload = async () => {
     const OPCharactersResponse = await getallOPCHARACTERS();
     const OPCharacters = OPCharactersResponse.results;
     const mainElement = document.createElement('main');
     document.body.appendChild(mainElement);
+    const OPcounter=0;
 
-     for (const OPReference of OPCharacters) {
-        const characters = await getallOPCHARACTERS(pokemonReference.url);
+     while (OPcounter<10) {
+        
 
         const OPelement = document.createElement('div');
 
-        
+        const CharacterName = document.createElement('h2');
+        CharacterName.textContent = `OPCharacters.name`;
+
+        const Pokemontype = document.createElement('p');
+        Pokemontype.textContent = pokemon.types
+            .map(typeInfo => typeInfo.type.name)
+            .join(', ');
+        Pokemontype.hidden = true;
+
+        const OPsprite = document.createElement('img');
+        OPsprite.src = pokemon.sprites.front_default;
+        Pokemonsprite.alt = pokemon.name;
+        Pokemonsprite.hidden = true;
+
+        const AddPokemonButton = document.createElement('button');
+        AddPokemonButton.textContent = 'ADD POKEMON TO THE TEAM';
+        AddPokemonButton.hidden = true;
+
+        AddPokemonButton.addEventListener('click', () => {
+            addPokemon(pokemon);
+        });
+
+        PokemonName.addEventListener('click', () => {
+            Pokemontype.hidden = !Pokemontype.hidden;
+            Pokemonsprite.hidden = !Pokemonsprite.hidden;
+            AddPokemonButton.hidden = !AddPokemonButton.hidden;
+        });
+
+        Pokemonelement.appendChild(PokemonName);
+        Pokemonelement.appendChild(Pokemonsprite);
+        Pokemonelement.appendChild(Pokemontype);
+        Pokemonelement.appendChild(AddPokemonButton);
+
+        mainElement.appendChild(Pokemonelement);
+        OPcounter++;
     }
 }
