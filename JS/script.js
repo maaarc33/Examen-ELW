@@ -1,4 +1,4 @@
-const OP_API_BASEURL = 'https://bn9ct5dd-3000.uks1.devtunnels.ms/';
+const OP_API_BASEURL = 'http://localhost:3000/api/onepiece';
 async function getallOPCHARACTERS() {
     const response = await fetch(`${OP_API_BASEURL}/characters?limit=10`);
     const data = await response.json();
@@ -19,18 +19,16 @@ window.onload = async () => {
         const CharacterName = document.createElement('h2');
         CharacterName.textContent = `OPCharacters.name`;
 
-        const Pokemontype = document.createElement('p');
-        Pokemontype.textContent = pokemon.types
-            .map(typeInfo => typeInfo.type.name)
-            .join(', ');
-        Pokemontype.hidden = true;
+        
 
         const OPsprite = document.createElement('img');
-        OPsprite.src = pokemon.sprites.front_default;
+        OPsprite.src = OPCharacters.image_url;
         Pokemonsprite.alt = pokemon.name;
-        Pokemonsprite.hidden = true;
+        const OPBounty = document.createElement('p');
+        OPBounty.textContent='OPCharacters.bounty'
+        OPBounty
 
-        const AddPokemonButton = document.createElement('button');
+        const AddOPButton = document.createElement('button');
         AddPokemonButton.textContent = 'ADD POKEMON TO THE TEAM';
         AddPokemonButton.hidden = true;
 
