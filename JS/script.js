@@ -4,13 +4,17 @@ async function getallOPCHARACTERS() {
     const data = await response.json();
     return data;
 }
-async function getOPCHARBYURL(pokemonUrl) {
-    const response = await fetch(pokemonUrl);
+window.onload = async () => {
+    const OPCharactersResponse = await getallOPCHARACTERS();
+    const OPCharacters = OPCharactersResponse.results;
+    const mainElement = document.createElement('main');
+    document.body.appendChild(mainElement);
 
-    if (!response.ok) {
-        throw new Error('Pokemon not found');
+     for (const OPReference of OPCharacters) {
+        const characters = await getallOPCHARACTERS(pokemonReference.url);
+
+        const OPelement = document.createElement('div');
+
+        
     }
-
-    const data = await response.json();
-    return data;
 }
