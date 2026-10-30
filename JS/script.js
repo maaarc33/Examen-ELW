@@ -4,16 +4,16 @@ async function getallOPCHARACTERS() {
     const data = await response.json();
     return data;
 }   
-async function getOPimageByUrl(OPUrl) {
-    const response = await fetch(OPUrl);
+// async function getOPimageByUrl(OPUrl) {
+//     const response = await fetch(OPUrl);
 
-    if (!response.ok) {
-        throw new Error('Image not found');
-    }
+//     if (!response.ok) {
+//         throw new Error('Image not found');
+//     }
 
-    const data = await response.json();
-    return data;
-}
+//     const data = await response.json();
+//     return data;
+// }
 window.onload = async () => {
     const OPCharactersResponse = await getallOPCHARACTERS();
     //const OPCharacters = OPCharactersResponse.results;
@@ -21,50 +21,48 @@ window.onload = async () => {
     document.body.appendChild(mainElement);
    
 
-  //  for (const OPreference of OPCharacters.keys(image_url)) {
-       // const OPimage = await getOPimageByUrl(OPreference.image_url);
+ for(const i=0; i<10;i++){
+       //const OPimage = await getOPimageByUrl(OPreference.image_url);
         
 
         const OPelement = document.createElement('div');
 
-       // const CharacterName = document.createElement('h2');
-       // CharacterName.textContent = OPCharacters.name.en;
+       const CharacterName = document.createElement('h2');
+       CharacterName.textContent = OPCharactersResponse.name.join(', ');
         
-        // map(nameInfo => nameInfo.type.name)
-        //     .join(', ');;
 
         
 
          const OPsprite = document.createElement('img');
          OPsprite.src = OPCharactersResponse.image_url;
-        // //Pokemonsprite.alt = pokemon.name;
-        // const OPBounty = document.createElement('p');
-        // OPBounty.textContent='OPCharacters.bounty'
-        // OPBounty.hidden=true;
-        // if(OPBounty != null){
-        //     OPBounty.hidden=false;
-        // }
+        //Pokemonsprite.alt = pokemon.name;
+        const OPBounty = document.createElement('p');
+        OPBounty.textContent='OPCharacters.bounty'
+        OPBounty.hidden=true;
+        if(OPBounty != null){
+            OPBounty.hidden=false;
+        }
 
-        // const AddOPButton = document.createElement('button');
-        // AddPokemonButton.textContent = 'ADD POKEMON TO THE TEAM';
-        // AddPokemonButton.hidden = true;
+        const AddOPButton = document.createElement('button');
+        AddPokemonButton.textContent = 'ADD POKEMON TO THE TEAM';
+        AddPokemonButton.hidden = true;
 
-        // AddPokemonButton.addEventListener('click', () => {
-        //     addPokemon(pokemon);
-        // });
+        AddPokemonButton.addEventListener('click', () => {
+            addPokemon(pokemon);
+        });
 
-        // PokemonName.addEventListener('click', () => {
-        //     Pokemontype.hidden = !Pokemontype.hidden;
-        //     Pokemonsprite.hidden = !Pokemonsprite.hidden;
-        //     AddPokemonButton.hidden = !AddPokemonButton.hidden;
-        // });
+        PokemonName.addEventListener('click', () => {
+            Pokemontype.hidden = !Pokemontype.hidden;
+            Pokemonsprite.hidden = !Pokemonsprite.hidden;
+            AddPokemonButton.hidden = !AddPokemonButton.hidden;
+        });
 
-        //OPelement.appendChild(CharacterName);
+        OPelement.appendChild(CharacterName);
         OPelement.appendChild(OPsprite);
-        //OPelement.appendChild(OPBounty);
+        OPelement.appendChild(OPBounty);
         //OPelement.appendChild(AddPokemonButton);
 
         mainElement.appendChild(OPelement);
        
     }
-//}
+}
